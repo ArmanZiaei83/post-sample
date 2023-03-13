@@ -26,9 +26,7 @@ public class SwaggerConfig {
 
 
     private ApiInfo apiInfo() {
-        var description = "API";
         return new ApiInfoBuilder().title("Application APIs")
-                .description(description)
                 .version("1.0")
                 .build();
     }

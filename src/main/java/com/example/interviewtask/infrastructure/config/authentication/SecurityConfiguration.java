@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -25,21 +26,17 @@ public class SecurityConfiguration {
             throws Exception {
         http.csrf()
                 .disable()
-//                .authorizeHttpRequests()
-//                .requestMatchers("/swagger-resources/**")
-//                .permitAll()
-//                .requestMatchers("/swagger-ui.html")
-//                .permitAll()
-//                .requestMatchers("/v2/api/docs")
-//                .permitAll()
-//                .requestMatchers("/webjars/**")
-//                .permitAll()
-//                .anyRequest()
-//                .permitAll()
-//                .requestMatchers("/api/v1/auth/**")
-//                .permitAll()
-//                .anyRequest()
-//                .and()
+                .authorizeHttpRequests()
+                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**",
+                        "/v2/api-docs/**", "/swagger-resources/**",
+                        "/api/v1/auth/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter,
                         UsernamePasswordAuthenticationFilter.class)
@@ -52,3 +49,23 @@ public class SecurityConfiguration {
         return http.build();
     }
 }
+//        http.csrf()
+//                .disable()
+//                .authorizeHttpRequests()
+//                .requestMatchers("/v3/api-docs/**", "/swagger-ui/**",
+//                        "/v2/api-docs/**", "/swagger-resources/**", "/api/v1/auth/**")
+//                .anonymous()
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .authenticationProvider(authenticationProvider)
+//                .addFilterBefore(jwtAuthFilter,
+//                        UsernamePasswordAuthenticationFilter.class)
+//                .logout()
+//                .logoutUrl("/api/v1/auth/logout")
+//                .addLogoutHandler(logoutHandler)
+//                .logoutSuccessHandler(
+//                        (request, response, authentication) -> SecurityContextHolder.clearContext());
+//
+//        return http.build();
+//    }
