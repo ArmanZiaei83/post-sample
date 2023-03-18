@@ -2,6 +2,7 @@ package com.example.interviewtask.presentation.post;
 
 import com.example.interviewtask.application.post.PostService;
 import com.example.interviewtask.application.post.dto.CreatePostDto;
+import com.example.interviewtask.application.post.dto.GetPostByIdDto;
 import com.example.interviewtask.application.post.dto.UpdatePostDto;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
@@ -22,13 +23,18 @@ public class PostsController {
     @SneakyThrows
     @PostMapping
     public int create(@RequestParam int authorId,
-                      @RequestBody @Valid CreatePostDto dto) {
+                      @RequestBody CreatePostDto dto) {
         return service.create(authorId, dto);
     }
 
     @PutMapping
-    public void update(@RequestParam int postId,
+    public void update(@RequestParam int id,
                        @RequestBody @Valid UpdatePostDto dto) {
-        service.update(postId, dto);
+        service.update(id, dto);
+    }
+
+    @GetMapping("detail")
+    public GetPostByIdDto GetById(@RequestParam int id) {
+        return service.getById(id);
     }
 }

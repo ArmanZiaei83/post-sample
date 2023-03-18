@@ -69,4 +69,5 @@ public class PostRepositoryImplTest extends BusinessUnitTest {
         Assert.assertEquals(actualResult.getAuthorId(), post.getAuthorId());
     }
 
+
 }

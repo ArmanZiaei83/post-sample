@@ -14,7 +14,7 @@ public class Post {
     private String title;
     private String description;
     private String content;
-    private Integer authorId;
+    private int authorId;
     private LocalDateTime publishDate;
     private boolean isPremium;
 }

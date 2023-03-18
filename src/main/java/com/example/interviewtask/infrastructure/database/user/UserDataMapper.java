@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
@@ -22,21 +23,20 @@ public class UserDataMapper {
     @GeneratedValue
     private Integer id;
     @Column(nullable = false)
+    @Length(min = 1, max = 20)
     private String firstname;
     @Column(nullable = false)
-
+    @Length(min = 1, max = 20)
     private String lastname;
     @Column(nullable = false)
-
+    @Length(max = 320)
     private String email;
     @Column(nullable = false)
-
+    @Length(min = 8, max = 60)
     private String password;
-    @Column(nullable = false)
-
     private boolean isPremium;
 
-    @OneToMany(mappedBy = "authorId")
+    @OneToMany(mappedBy = "author")
     private List<PostDataMapper> posts;
 
     @Enumerated(EnumType.STRING)

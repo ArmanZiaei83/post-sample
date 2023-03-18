@@ -1,5 +1,6 @@
 package com.example.interviewtask.persistence.post;
 
+import com.example.interviewtask.application.post.dto.GetPostByIdDto;
 import com.example.interviewtask.application.post.repository.PostRepository;
 import com.example.interviewtask.domain.post.Post;
 import com.example.interviewtask.infrastructure.database.post.JpaPostRepository;
@@ -24,6 +25,7 @@ public class PostRepositoryImpl implements PostRepository {
         postMapper.setDescription(post.getDescription());
         postMapper.setPremium(post.isPremium());
         postMapper.setContent(post.getContent());
+        postMapper.setPublishDate(post.getPublishDate());
         postMapper.setTitle(post.getTitle());
 
         return jpaRepository.save(postMapper)
@@ -57,5 +59,20 @@ public class PostRepositoryImpl implements PostRepository {
                 .publishDate(post.getPublishDate())
                 .build();
         jpaRepository.save(postData);
+    }
+
+    @Override
+    public GetPostByIdDto getById(int id) {
+        var postData = jpaRepository.findById(id).get();
+        return GetPostByIdDto.builder()
+                .authorId(postData.getAuthorId())
+                .authorFirstName(postData.getAuthor().getFirstname())
+                .authorLastName(postData.getAuthor().getLastname())
+                .content(postData.getContent())
+                .title(postData.getTitle())
+                .description(postData.getDescription())
+                .publishedDate(postData.getPublishDate())
+                .isPremium(postData.isPremium())
+                .build();
     }
 }

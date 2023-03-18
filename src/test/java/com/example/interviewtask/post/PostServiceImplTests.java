@@ -4,7 +4,9 @@ import com.example.interviewtask.application.post.PostServiceImpl;
 import com.example.interviewtask.application.post.dto.CreatePostDto;
 import com.example.interviewtask.application.post.dto.UpdatePostDto;
 import com.example.interviewtask.application.post.use_cases.CreatePostUseCase;
+import com.example.interviewtask.application.post.use_cases.GetPostByIdUseCase;
 import com.example.interviewtask.application.post.use_cases.UpdatePostUseCase;
+import com.example.interviewtask.domain.post.Post;
 import com.example.interviewtask.infrastructures.BusinessUnitTest;
 import lombok.SneakyThrows;
 import org.junit.Assert;
@@ -30,6 +32,8 @@ public class PostServiceImplTests extends BusinessUnitTest {
     private CreatePostUseCase createPostUseCase;
     @MockBean
     private UpdatePostUseCase updatePostUseCase;
+    @MockBean
+    private GetPostByIdUseCase getPostByIdUseCase;
 
     @SneakyThrows
     @Test
@@ -63,5 +67,20 @@ public class PostServiceImplTests extends BusinessUnitTest {
         sut.update(postId, dto);
 
         verify(updatePostUseCase).execute(postId, dto);
+    }
+
+    @Test
+    public void getById_gets_post_by_id_properly() {
+        var post = Post.builder()
+                .id(randomInt())
+                .title("first-post")
+                .description("dummy-desc")
+                .content("dummy-content")
+                .authorId(randomInt())
+                .build();
+
+        sut.getById(post.getId());
+
+        verify(getPostByIdUseCase).execute(post.getId());
     }
 }
