@@ -1,11 +1,14 @@
 package com.example.interviewtask.persistence.post;
 
+import com.example.interviewtask.application.post.dto.GetAllPostsDto;
 import com.example.interviewtask.application.post.dto.GetPostByIdDto;
 import com.example.interviewtask.application.post.repository.PostRepository;
 import com.example.interviewtask.domain.post.Post;
 import com.example.interviewtask.infrastructure.database.post.JpaPostRepository;
 import com.example.interviewtask.infrastructure.database.post.PostDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -74,5 +77,10 @@ public class PostRepositoryImpl implements PostRepository {
                 .publishedDate(postData.getPublishDate())
                 .isPremium(postData.isPremium())
                 .build();
+    }
+
+    @Override
+    public Page<GetAllPostsDto> getAll(Pageable pageable) {
+        return jpaRepository.findAllDto(pageable);
     }
 }

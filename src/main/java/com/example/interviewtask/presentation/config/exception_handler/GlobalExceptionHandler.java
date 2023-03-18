@@ -1,4 +1,4 @@
-package com.example.interviewtask.presentation.configs.exception_handler;
+package com.example.interviewtask.presentation.config.exception_handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

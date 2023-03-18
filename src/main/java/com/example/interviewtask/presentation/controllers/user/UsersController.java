@@ -1,4 +1,4 @@
-package com.example.interviewtask.presentation.user;
+package com.example.interviewtask.presentation.controllers.user;
 
 import com.example.interviewtask.application.user.UserService;
 import com.example.interviewtask.application.user.dto.CreateUserDto;

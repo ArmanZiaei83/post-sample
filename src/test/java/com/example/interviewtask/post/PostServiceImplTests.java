@@ -4,6 +4,7 @@ import com.example.interviewtask.application.post.PostServiceImpl;
 import com.example.interviewtask.application.post.dto.CreatePostDto;
 import com.example.interviewtask.application.post.dto.UpdatePostDto;
 import com.example.interviewtask.application.post.use_cases.CreatePostUseCase;
+import com.example.interviewtask.application.post.use_cases.GetAllPostsUseCase;
 import com.example.interviewtask.application.post.use_cases.GetPostByIdUseCase;
 import com.example.interviewtask.application.post.use_cases.UpdatePostUseCase;
 import com.example.interviewtask.domain.post.Post;
@@ -34,6 +35,8 @@ public class PostServiceImplTests extends BusinessUnitTest {
     private UpdatePostUseCase updatePostUseCase;
     @MockBean
     private GetPostByIdUseCase getPostByIdUseCase;
+    @MockBean
+    private GetAllPostsUseCase getAllPostUseCase;
 
     @SneakyThrows
     @Test
@@ -82,5 +85,12 @@ public class PostServiceImplTests extends BusinessUnitTest {
         sut.getById(post.getId());
 
         verify(getPostByIdUseCase).execute(post.getId());
+    }
+
+    @Test
+    public void getAll_gets_all_posts_properly() {
+        sut.getAll(null);
+
+        verify(getAllPostUseCase).execute(null);
     }
 }
