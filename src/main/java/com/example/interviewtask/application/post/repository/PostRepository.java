@@ -4,6 +4,5 @@ import com.example.interviewtask.domain.post.Post;
 
 
 public interface PostRepository {
-
-    Long create(Post post);
+    int create(Post post);
 }

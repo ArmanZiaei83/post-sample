@@ -6,11 +6,10 @@ import com.example.interviewtask.infrastructure.database.user.JpaUserRepository;
 import com.example.interviewtask.infrastructure.database.user.UserDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 @Component
 public class UserJpaRepository implements UserRepository {
-    private JpaUserRepository jpaRepository;
+    private final JpaUserRepository jpaRepository;
 
     @Autowired
     public UserJpaRepository(JpaUserRepository jpaRepository) {

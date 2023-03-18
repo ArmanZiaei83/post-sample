@@ -5,9 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-//@Repository
-public interface PostJpaRepository extends JpaRepository<PostDataMapper, Long> {
+@Repository
+public interface JpaPostRepository extends JpaRepository<PostDataMapper, Long> {
     Optional<PostDataMapper> findById(long postId);
-
     PostDataMapper save(PostDataMapper post);
 }

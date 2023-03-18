@@ -27,7 +27,7 @@ public class UserDataMapper {
     private String password;
     private boolean isPremium;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "authorId")
     private List<PostDataMapper> posts;
 
     @Enumerated(EnumType.STRING)

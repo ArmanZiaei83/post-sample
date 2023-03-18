@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CreatePostUseCaseImpl implements CreatePostUseCase {
-    private PostRepository postRepository;
-    private DateTimeService dateTimeService;
+    private final PostRepository postRepository;
+    private final DateTimeService dateTimeService;
 
     @Autowired
     public CreatePostUseCaseImpl(PostRepository postRepository,
@@ -20,13 +20,15 @@ public class CreatePostUseCaseImpl implements CreatePostUseCase {
     }
 
     @Override
-    public long execute(long authorId, CreatePostDto dto) {
+    public int execute(int authorId, CreatePostDto dto) {
         var post = new Post();
         post.setPremium(dto.isPremium());
+        post.setAuthorId(authorId);
         post.setContent(dto.getContent());
         post.setDescription(dto.getDescription());
         post.setTitle(dto.getTitle());
         post.setPublishDate(dateTimeService.now());
+
         return postRepository.create(post);
     }
 }

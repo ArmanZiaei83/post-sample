@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CreateUserUseCaseImpl implements CreateUserUseCase {
-    private UserRepository repository;
+    private final UserRepository repository;
 
     @Autowired
     public CreateUserUseCaseImpl(UserRepository repository) {
