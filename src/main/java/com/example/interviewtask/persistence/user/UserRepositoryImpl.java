@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserJpaRepository implements UserRepository {
+public class UserRepositoryImpl implements UserRepository {
     private final JpaUserRepository jpaRepository;
 
     @Autowired
-    public UserJpaRepository(JpaUserRepository jpaRepository) {
+    public UserRepositoryImpl(JpaUserRepository jpaRepository) {
         this.jpaRepository = jpaRepository;
     }
 
@@ -26,5 +26,10 @@ public class UserJpaRepository implements UserRepository {
                 .isPremium(user.isPremium())
                 .build();
         return jpaRepository.save(dataMapper).getId();
+    }
+
+    @Override
+    public boolean exists(int id) {
+        return jpaRepository.findById(id).isPresent();
     }
 }

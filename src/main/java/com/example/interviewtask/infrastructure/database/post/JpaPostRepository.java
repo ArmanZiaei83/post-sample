@@ -7,6 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface JpaPostRepository extends JpaRepository<PostDataMapper, Long> {
-    Optional<PostDataMapper> findById(long postId);
+    Optional<PostDataMapper> findById(int id);
     PostDataMapper save(PostDataMapper post);
 }

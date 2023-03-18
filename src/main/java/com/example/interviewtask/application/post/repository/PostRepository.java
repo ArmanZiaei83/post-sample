@@ -5,4 +5,8 @@ import com.example.interviewtask.domain.post.Post;
 
 public interface PostRepository {
     int create(Post post);
+
+    Post findById(int id);
+
+    void update(Post post);
 }

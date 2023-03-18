@@ -13,7 +13,6 @@ import java.util.List;
 @Getter
 @Setter
 public class User {
-
     private Integer id;
     private String firstname;
     private String lastname;

@@ -21,10 +21,19 @@ public class UserDataMapper {
     @Id
     @GeneratedValue
     private Integer id;
+    @Column(nullable = false)
     private String firstname;
+    @Column(nullable = false)
+
     private String lastname;
+    @Column(nullable = false)
+
     private String email;
+    @Column(nullable = false)
+
     private String password;
+    @Column(nullable = false)
+
     private boolean isPremium;
 
     @OneToMany(mappedBy = "authorId")

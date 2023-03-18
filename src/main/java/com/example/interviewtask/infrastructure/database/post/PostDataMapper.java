@@ -17,11 +17,18 @@ public class PostDataMapper {
     @Id
     @GeneratedValue
     private int id;
+    @Column(nullable = false)
     private String title;
+
     private String description;
+    @Column(nullable = false)
     private String content;
     @JoinColumn(name = "authorId")
+    @Column(nullable = false)
     private int authorId;
+    @Column(nullable = false)
     private LocalDateTime publishDate;
+
+    @Column(nullable = false)
     private boolean isPremium;
 }

@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class PostJpaRepositoryTest extends BusinessUnitTest {
+public class PostRepositoryImplTest extends BusinessUnitTest {
 
     @Autowired
     private JpaPostRepository jpaRepository;
@@ -41,4 +41,32 @@ public class PostJpaRepositoryTest extends BusinessUnitTest {
                 post.getDescription());
         Assert.assertEquals(actualResult.getAuthorId(), post.getAuthorId());
     }
+
+    @Test
+    public void save_updates_an_existing_post_properly() {
+        var post = PostDataMapper.builder()
+                .title("dummy-title")
+                .description("dummy-desc")
+                .content("dummy-content")
+                .authorId(randomInt())
+                .isPremium(false)
+                .build();
+        entityManager.persist(post);
+
+        post.setDescription("new-desc");
+        post.setContent("new-content");
+        post.setPremium(true);
+        post.setTitle("new-title");
+        jpaRepository.save(post);
+
+        var actualResult = entityManager.find(post.getClass(), post.getId());
+        Assert.assertNotNull(actualResult.getId());
+        Assert.assertEquals(actualResult.getTitle(), post.getTitle());
+        Assert.assertEquals(actualResult.isPremium(), post.isPremium());
+        Assert.assertEquals(actualResult.getContent(), post.getContent());
+        Assert.assertEquals(actualResult.getDescription(),
+                post.getDescription());
+        Assert.assertEquals(actualResult.getAuthorId(), post.getAuthorId());
+    }
+
 }
