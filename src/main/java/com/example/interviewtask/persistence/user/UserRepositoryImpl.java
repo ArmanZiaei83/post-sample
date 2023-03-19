@@ -7,6 +7,8 @@ import com.example.interviewtask.infrastructure.database.user.UserDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class UserRepositoryImpl implements UserRepository {
     private final JpaUserRepository jpaRepository;
@@ -24,12 +26,20 @@ public class UserRepositoryImpl implements UserRepository {
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .isPremium(user.isPremium())
+                .role(user.getRole())
                 .build();
-        return jpaRepository.save(dataMapper).getId();
+        return jpaRepository.save(dataMapper)
+                .getId();
     }
 
     @Override
     public boolean exists(int id) {
-        return jpaRepository.findById(id).isPresent();
+        return jpaRepository.findById(id)
+                .isPresent();
+    }
+
+    @Override
+    public Optional<UserDataMapper> findByEmail(String email) {
+        return jpaRepository.findByEmail(email);
     }
 }

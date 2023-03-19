@@ -1,7 +1,9 @@
 package com.example.interviewtask.infrastructure.database.post;
 
 import com.example.interviewtask.application.post.dto.GetAllPostsDto;
+import com.example.interviewtask.application.post.dto.GetPostByIdDto;
 import com.example.interviewtask.infrastructure.entity_mappers.GetAllPostDtoMapper;
+import com.example.interviewtask.infrastructure.entity_mappers.GetPostByIdDtoMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -26,5 +28,10 @@ public interface JpaPostRepository extends JpaRepository<PostDataMapper, Long> {
                 .map(entity -> GetAllPostDtoMapper.toDto(entity))
                 .collect(Collectors.toList());
         return new PageImpl<>(data, pageable, entities.getTotalElements());
+    }
+
+    default GetPostByIdDto findByIdDto(int id) {
+        PostDataMapper post = findById(id).get();
+        return GetPostByIdDtoMapper.toDto(post);
     }
 }

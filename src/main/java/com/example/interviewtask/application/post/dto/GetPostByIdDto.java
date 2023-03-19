@@ -2,8 +2,6 @@ package com.example.interviewtask.application.post.dto;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -22,61 +20,61 @@ public class GetPostByIdDto {
         return title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public LocalDateTime getPublishedDate() {
-        return publishedDate;
-    }
-
-    public String getAuthorFirstName() {
-        return authorFirstName;
-    }
-
-    public String getAuthorLastName() {
-        return authorLastName;
-    }
-
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    @JsonGetter("isPremium")
-    public boolean isPremium() {
-        return isPremium;
-    }
-
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public String getContent() {
+        return content;
+    }
+
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public LocalDateTime getPublishedDate() {
+        return publishedDate;
     }
 
     public void setPublishedDate(LocalDateTime publishedDate) {
         this.publishedDate = publishedDate;
     }
 
+    public String getAuthorFirstName() {
+        return authorFirstName;
+    }
+
     public void setAuthorFirstName(String authorFirstName) {
         this.authorFirstName = authorFirstName;
+    }
+
+    public String getAuthorLastName() {
+        return authorLastName;
     }
 
     public void setAuthorLastName(String authorLastName) {
         this.authorLastName = authorLastName;
     }
 
+    public int getAuthorId() {
+        return authorId;
+    }
+
     public void setAuthorId(int authorId) {
         this.authorId = authorId;
+    }
+
+    @JsonGetter("isPremium")
+    public boolean isPremium() {
+        return isPremium;
     }
 
     public void setPremium(boolean premium) {

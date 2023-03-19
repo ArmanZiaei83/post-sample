@@ -8,7 +8,6 @@ import com.example.interviewtask.application.post.dto.UpdatePostDto;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +44,7 @@ public class PostsController {
 
     @GetMapping("/all")
     public List<GetAllPostsDto> GetAll(Pageable pageable) {
-        return service.getAll(pageable).getContent();
+        return service.getAll(pageable)
+                .getContent();
     }
 }
