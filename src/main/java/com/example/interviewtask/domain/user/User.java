@@ -1,8 +1,6 @@
 package com.example.interviewtask.domain.user;
 
-import com.example.interviewtask.domain.token.Token;
 import com.example.interviewtask.infrastructure.database.post.PostDataMapper;
-import com.example.interviewtask.infrastructure.database.user.Role;
 import lombok.*;
 
 import java.util.List;
@@ -23,6 +21,4 @@ public class User {
     private List<PostDataMapper> posts;
 
     private Role role;
-
-    private List<Token> tokens;
 }

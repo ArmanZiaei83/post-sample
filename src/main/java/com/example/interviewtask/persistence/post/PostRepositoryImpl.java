@@ -66,17 +66,7 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public GetPostByIdDto getById(int id) {
-        var postData = jpaRepository.findById(id).get();
-        return GetPostByIdDto.builder()
-                .authorId(postData.getAuthorId())
-                .authorFirstName(postData.getAuthor().getFirstname())
-                .authorLastName(postData.getAuthor().getLastname())
-                .content(postData.getContent())
-                .title(postData.getTitle())
-                .description(postData.getDescription())
-                .publishedDate(postData.getPublishDate())
-                .isPremium(postData.isPremium())
-                .build();
+        return jpaRepository.findByIdDto(id);
     }
 
     @Override

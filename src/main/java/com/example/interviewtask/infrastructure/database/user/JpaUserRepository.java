@@ -9,7 +9,9 @@ import java.util.Optional;
 public interface JpaUserRepository
         extends JpaRepository<UserDataMapper, Integer> {
 
+
     Optional<UserDataMapper> findByEmail(String email);
+
     UserDataMapper save(UserDataMapper dataMapper);
 
     @Override

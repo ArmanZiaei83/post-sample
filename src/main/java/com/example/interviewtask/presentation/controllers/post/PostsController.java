@@ -5,11 +5,12 @@ import com.example.interviewtask.application.post.dto.CreatePostDto;
 import com.example.interviewtask.application.post.dto.GetAllPostsDto;
 import com.example.interviewtask.application.post.dto.GetPostByIdDto;
 import com.example.interviewtask.application.post.dto.UpdatePostDto;
+import com.example.interviewtask.presentation.security.JwtPrincipal;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,8 @@ public class PostsController {
 
     @SneakyThrows
     @PostMapping
-    public int create(@RequestParam int authorId,
+    public int create(@AuthenticationPrincipal JwtPrincipal principal,
+                      @RequestParam int authorId,
                       @RequestBody CreatePostDto dto) {
         return service.create(authorId, dto);
     }
@@ -45,6 +47,7 @@ public class PostsController {
 
     @GetMapping("/all")
     public List<GetAllPostsDto> GetAll(Pageable pageable) {
-        return service.getAll(pageable).getContent();
+        return service.getAll(pageable)
+                .getContent();
     }
 }
