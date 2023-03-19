@@ -10,13 +10,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
-    private Long id;
+    private int id;
     private String title;
     private String description;
     private String content;
-    private String authorFirstName;
-    private String authorLastName;
-    private Integer authorId;
+    private int authorId;
     private LocalDateTime publishDate;
     private boolean isPremium;
 }

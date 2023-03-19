@@ -2,22 +2,19 @@ package com.example.interviewtask.application.post.dto;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 
 @Builder
-public class CreatePostDto {
+public class UpdatePostDto {
     @NotEmpty
-    public String title;
-
+    private String title;
     @NotEmpty
-    public String content;
 
+    private String content;
     @NotEmpty
-    public String description;
 
-    @NotNull
-    public boolean isPremium;
+    private String description;
+    private boolean isPremium;
 
     public String getTitle() {
         return title;

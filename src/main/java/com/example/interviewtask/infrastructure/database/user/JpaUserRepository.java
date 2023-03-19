@@ -11,4 +11,7 @@ public interface JpaUserRepository
 
     Optional<UserDataMapper> findByEmail(String email);
     UserDataMapper save(UserDataMapper dataMapper);
+
+    @Override
+    Optional<UserDataMapper> findById(Integer integer);
 }

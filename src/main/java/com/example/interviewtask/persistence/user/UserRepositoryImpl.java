@@ -6,14 +6,13 @@ import com.example.interviewtask.infrastructure.database.user.JpaUserRepository;
 import com.example.interviewtask.infrastructure.database.user.UserDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 @Component
-public class UserJpaRepository implements UserRepository {
-    private JpaUserRepository jpaRepository;
+public class UserRepositoryImpl implements UserRepository {
+    private final JpaUserRepository jpaRepository;
 
     @Autowired
-    public UserJpaRepository(JpaUserRepository jpaRepository) {
+    public UserRepositoryImpl(JpaUserRepository jpaRepository) {
         this.jpaRepository = jpaRepository;
     }
 
@@ -27,5 +26,10 @@ public class UserJpaRepository implements UserRepository {
                 .isPremium(user.isPremium())
                 .build();
         return jpaRepository.save(dataMapper).getId();
+    }
+
+    @Override
+    public boolean exists(int id) {
+        return jpaRepository.findById(id).isPresent();
     }
 }

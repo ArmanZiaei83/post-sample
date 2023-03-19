@@ -1,4 +1,4 @@
-package com.example.interviewtask.presentation.user;
+package com.example.interviewtask.presentation.controllers.user;
 
 import com.example.interviewtask.application.user.UserService;
 import com.example.interviewtask.application.user.dto.CreateUserDto;
@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/v1/users")
 public class UsersController {
 
-    private UserService userService;
+    private final UserService service;
 
     @Autowired
-    public UsersController(UserService userService) {
-        this.userService = userService;
+    public UsersController(UserService service) {
+        this.service = service;
     }
 
     @PostMapping
     public int create(@Valid @RequestBody CreateUserDto dto) {
-        return userService.create(dto);
+        return service.create(dto);
     }
 }
