@@ -30,6 +30,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
                 .isPremium(dto.isPremium())
                 .build();
         if (user.isPremium()) user.setRole(Role.PremiumUser);
+        else user.setRole(Role.User);
 
         return repository.save(user);
     }

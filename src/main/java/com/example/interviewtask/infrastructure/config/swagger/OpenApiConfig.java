@@ -1,6 +1,5 @@
 package com.example.interviewtask.infrastructure.config.swagger;
 
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -21,14 +20,11 @@ public class OpenApiConfig {
                 StringUtils.capitalize("Spring boot JWT auth"));
         return new OpenAPI().addSecurityItem(
                         new SecurityRequirement().addList(securitySchemeName))
-                .components(
-                        new Components().addSecuritySchemes(securitySchemeName,
-                                new SecurityScheme().name(securitySchemeName)
-                                        .type(SecurityScheme.Type.HTTP)
-                                        .bearerFormat("JWT")
-                                        .scheme("bearer")
-                                        .in(SecurityScheme.In.HEADER)
-                        ))
+                .components(new Components().addSecuritySchemes("Authorization",
+                        new SecurityScheme().scheme(securitySchemeName)
+                                .type(SecurityScheme.Type.HTTP)
+                                .in(SecurityScheme.In.HEADER)
+                                .bearerFormat("Bearer ")))
                 .info(new Info().title(apiTitle)
                         .version("V1"));
     }
