@@ -46,8 +46,6 @@ public class SecurityConfig {
                         "/swagger-ui/index.html", "/swagger-ui/**",
                         "/v3/api-docs/**", "api/v1/users")
                 .permitAll()
-                .requestMatchers("/premium")
-                .hasRole("PremuimUser")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -66,15 +64,6 @@ public class SecurityConfig {
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
-//    @Bean
-//    protected AuthenticationManagerBuilder configureAuthenticationManager(
-//            AuthenticationManagerBuilder auth)
-//            throws Exception {
-//        auth.userDetailsService(userDetailsService)
-//                .passwordEncoder(passwordEncoder());
-//        return auth;
-//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

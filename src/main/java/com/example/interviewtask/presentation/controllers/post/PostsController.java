@@ -5,18 +5,19 @@ import com.example.interviewtask.application.post.dto.CreatePostDto;
 import com.example.interviewtask.application.post.dto.GetAllPostsDto;
 import com.example.interviewtask.application.post.dto.GetPostByIdDto;
 import com.example.interviewtask.application.post.dto.UpdatePostDto;
-import com.example.interviewtask.presentation.security.JwtPrincipal;
 import jakarta.validation.Valid;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/posts")
+@EnableGlobalAuthentication
 public class PostsController {
 
     private final PostService service;
@@ -28,20 +29,22 @@ public class PostsController {
 
     @SneakyThrows
     @PostMapping
-    public int create(@AuthenticationPrincipal JwtPrincipal principal,
-                      @RequestParam int authorId,
+    public int create(Authentication authentication,
                       @RequestBody CreatePostDto dto) {
-        return service.create(authorId, dto);
+        return service.create(authentication.getPrincipal()
+                .toString(), dto);
     }
 
     @PutMapping
-    public void update(@RequestParam int id,
+    public void update(Authentication authentication, @RequestParam int id,
                        @RequestBody @Valid UpdatePostDto dto) {
-        service.update(id, dto);
+        service.update(authentication.getPrincipal()
+                .toString(), id, dto);
     }
 
     @GetMapping("/detail")
-    public GetPostByIdDto GetById(@RequestParam int id) {
+    public GetPostByIdDto GetById(Authentication authentication,
+                                  @RequestParam int id) {
         return service.getById(id);
     }
 

@@ -1,6 +1,6 @@
 package com.example.interviewtask.application.post.use_cases;
 
-import com.example.interviewtask.application.date_time.DateTimeService;
+import com.example.interviewtask.infrastructure.date_time.DateTimeService;
 import com.example.interviewtask.application.post.dto.CreatePostDto;
 import com.example.interviewtask.application.post.exception.AuthorNotFoundException;
 import com.example.interviewtask.application.post.repository.PostRepository;
@@ -27,7 +27,7 @@ public class CreatePostUseCaseImpl implements CreatePostUseCase {
 
     @SneakyThrows
     @Override
-    public int execute(int authorId, CreatePostDto dto) {
+    public int execute(String authorId, CreatePostDto dto) {
 
         throwExceptionWhenAuthorIdIsInvalid(authorId);
 
@@ -42,7 +42,7 @@ public class CreatePostUseCaseImpl implements CreatePostUseCase {
         return postRepository.create(post);
     }
 
-    private void throwExceptionWhenAuthorIdIsInvalid(int authorId)
+    private void throwExceptionWhenAuthorIdIsInvalid(String authorId)
             throws AuthorNotFoundException {
         boolean authorExists = userRepository.exists(authorId);
         if (!authorExists) throw new AuthorNotFoundException();

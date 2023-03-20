@@ -33,14 +33,14 @@ public class PostServiceImpl implements PostService {
         this.getAllPostsUseCase = getAllPostsUseCase;
     }
 
-    public int create(int authorId, CreatePostDto dto)
+    public int create(String authorId, CreatePostDto dto)
             throws AuthorNotFoundException {
         return createPostUseCase.execute(authorId, dto);
     }
 
     @Override
-    public void update(int postId, UpdatePostDto dto) {
-        updatePostUseCase.execute(postId, dto);
+    public void update(String authorId, int postId, UpdatePostDto dto) {
+        updatePostUseCase.execute(authorId, postId, dto);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.example.interviewtask.infrastructure.database.post.PostDataMapper;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Builder
 @NoArgsConstructor
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 public class User {
-    private Integer id;
+    private String id;
     private String firstname;
     private String lastname;
     private String email;

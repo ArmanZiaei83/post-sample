@@ -1,6 +1,8 @@
 package com.example.interviewtask.post.use_cases;
 
 import com.example.interviewtask.application.post.dto.UpdatePostDto;
+import com.example.interviewtask.application.post.exception.AuthorNotFoundException;
+import com.example.interviewtask.application.post.exception.OnlyAuthorCanEditPostException;
 import com.example.interviewtask.application.post.repository.PostRepository;
 import com.example.interviewtask.application.post.use_cases.UpdatePostUseCaseImpl;
 import com.example.interviewtask.domain.post.Post;
@@ -14,6 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -34,7 +38,7 @@ public class UpdatePostUseCaseImplTests extends BusinessUnitTest {
                 .content("dummy-content")
                 .description("dummy-desc")
                 .publishDate(LocalDateTime.of(2000, 02, 02, 02, 02))
-                .authorId(randomInt())
+                .authorId(randomString())
                 .isPremium(false)
                 .build();
         when(postRepository.findById(post.getId())).thenReturn(post);
@@ -45,12 +49,36 @@ public class UpdatePostUseCaseImplTests extends BusinessUnitTest {
                 .isPremium(true)
                 .build();
 
-        updatePostUseCase.execute(post.getId(), dto);
+        updatePostUseCase.execute(post.getAuthorId(), post.getId(), dto);
 
         post.setTitle(dto.getTitle());
         post.setContent(dto.getContent());
         post.setDescription(dto.getDescription());
         post.setPremium(dto.isPremium());
         verify(postRepository).update(post);
+    }
+
+    @Test
+    public void update_throws_OnlyAuthorCanEditPostException_when_user_is_not_author_of_the_post() {
+        var post = Post.builder()
+                .id(randomInt())
+                .title("dummy-title")
+                .content("dummy-content")
+                .description("dummy-desc")
+                .publishDate(LocalDateTime.of(2000, 02, 02, 02, 02))
+                .authorId(randomString())
+                .isPremium(false)
+                .build();
+        var invalidAuthorId = randomString();
+        when(postRepository.findById(post.getId())).thenReturn(post);
+        var dto = UpdatePostDto.builder()
+                .build();
+
+        var exception = assertThrows(OnlyAuthorCanEditPostException.class,
+                () -> updatePostUseCase.execute(invalidAuthorId, post.getId(),
+                        dto));
+
+        assertEquals(exception.getClass(),
+                OnlyAuthorCanEditPostException.class);
     }
 }

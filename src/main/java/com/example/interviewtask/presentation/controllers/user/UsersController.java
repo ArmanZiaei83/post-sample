@@ -21,7 +21,7 @@ public class UsersController {
     }
 
     @PostMapping
-    public int create(@Valid @RequestBody CreateUserDto dto) {
+    public String create(@Valid @RequestBody CreateUserDto dto) {
         return service.create(dto);
     }
 }

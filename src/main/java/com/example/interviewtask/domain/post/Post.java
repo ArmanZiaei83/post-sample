@@ -3,6 +3,7 @@ package com.example.interviewtask.domain.post;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ public class Post {
     private String title;
     private String description;
     private String content;
-    private int authorId;
+    private String authorId;
     private LocalDateTime publishDate;
     private boolean isPremium;
 }

@@ -35,10 +35,10 @@ public class CreateUserUseCaseImplTests extends BusinessUnitTest {
                 .password("dummy-pass")
                 .isPremium(false)
                 .build();
-        var userId = randomInt();
+        var userId = randomString();
         when(userRepository.save(any())).thenReturn(userId);
 
-        int actualResult = createUserUseCase.execute(dto);
+        var actualResult = createUserUseCase.execute(dto);
 
         Assert.assertEquals(actualResult, userId);
     }

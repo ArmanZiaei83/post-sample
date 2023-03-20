@@ -1,6 +1,6 @@
 package com.example.interviewtask.post.use_cases;
 
-import com.example.interviewtask.application.date_time.DateTimeService;
+import com.example.interviewtask.infrastructure.date_time.DateTimeService;
 import com.example.interviewtask.application.post.dto.CreatePostDto;
 import com.example.interviewtask.application.post.exception.AuthorNotFoundException;
 import com.example.interviewtask.application.post.repository.PostRepository;
@@ -57,7 +57,7 @@ public class CreatePostUseCaseImplTests extends BusinessUnitTest {
                 .content("dummy-content")
                 .isPremium(false)
                 .build();
-        int authorId = randomInt();
+        var authorId = randomString();
         int postId = randomInt();
         when(postRepository.create(any(Post.class))).thenReturn(postId);
         when(userRepository.exists(authorId)).thenReturn(true);
@@ -77,7 +77,7 @@ public class CreatePostUseCaseImplTests extends BusinessUnitTest {
                 .content("dummy-content")
                 .isPremium(false)
                 .build();
-        int invalidAuthorId = 0;
+        var invalidAuthorId = "invalid_id";
         int postId = randomInt();
         when(postRepository.create(any(Post.class))).thenReturn(postId);
 

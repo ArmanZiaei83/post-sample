@@ -30,7 +30,7 @@ public class PostRepositoryImplTest extends BusinessUnitTest {
                 .title("dummy-title")
                 .description("dummy-desc")
                 .content("dummy-content")
-                .authorId(randomInt())
+                .authorId(randomString())
                 .isPremium(false)
                 .build();
 
@@ -52,7 +52,7 @@ public class PostRepositoryImplTest extends BusinessUnitTest {
                 .title("dummy-title")
                 .description("dummy-desc")
                 .content("dummy-content")
-                .authorId(randomInt())
+                .authorId(randomString())
                 .isPremium(false)
                 .build();
         entityManager.persist(post);
@@ -99,6 +99,7 @@ public class PostRepositoryImplTest extends BusinessUnitTest {
 
     private PostDataMapper createPost() {
         var author = UserDataMapper.builder()
+                .id(randomString())
                 .firstname("dummy-first-name")
                 .lastname("dummy-last-name")
                 .email("dummy-email")
@@ -108,7 +109,8 @@ public class PostRepositoryImplTest extends BusinessUnitTest {
         entityManager.persist(author);
         var post = PostDataMapper.builder()
                 .title("dummy-title")
-                .authorId(author.getId())
+                .authorId(author.getId()
+                        .toString())
                 .content("dummy-content")
                 .publishDate(LocalDateTime.of(2000, 02, 02, 0, 0, 0))
                 .isPremium(false)
@@ -116,5 +118,4 @@ public class PostRepositoryImplTest extends BusinessUnitTest {
                 .build();
         return post;
     }
-
 }

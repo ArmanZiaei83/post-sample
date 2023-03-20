@@ -30,7 +30,7 @@ public class GetPostByIdUseCaseImplTests extends BusinessUnitTest {
     @Test
     public void execute_executes_getting_a_post_by_id_properly() {
         var author = User.builder()
-                .id(randomInt())
+                .id(randomString())
                 .firstname("dummy-first-name")
                 .lastname("dummy-last-name")
                 .email("dummy-email")

@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer create(CreateUserDto dto) {
+    public String create(CreateUserDto dto) {
         return createUseCase.execute(dto);
     }
 }

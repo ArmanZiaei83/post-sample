@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 public class UserRepositoryImpl implements UserRepository {
@@ -19,8 +20,10 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Integer save(User user) {
+    public String save(User user) {
         var dataMapper = UserDataMapper.builder()
+                .id(UUID.randomUUID()
+                        .toString())
                 .firstname(user.getFirstname())
                 .lastname(user.getLastname())
                 .email(user.getEmail())
@@ -29,17 +32,18 @@ public class UserRepositoryImpl implements UserRepository {
                 .role(user.getRole())
                 .build();
         return jpaRepository.save(dataMapper)
-                .getId();
+                .getId()
+                .toString();
     }
 
     @Override
-    public boolean exists(int id) {
+    public boolean exists(String id) {
         return jpaRepository.findById(id)
                 .isPresent();
     }
 
     @Override
-    public Optional<UserDataMapper> findByEmail(String email) {
-        return jpaRepository.findByEmail(email);
+    public Optional<UserDataMapper> findById(String id) {
+        return jpaRepository.findById(id);
     }
 }

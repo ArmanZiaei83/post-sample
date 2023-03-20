@@ -21,7 +21,7 @@ public class CreateUserUseCaseImpl implements CreateUserUseCase {
     }
 
     @Override
-    public Integer execute(CreateUserDto dto) {
+    public String execute(CreateUserDto dto) {
         var user = User.builder()
                 .firstname(dto.getFirstName())
                 .lastname(dto.getLastName())

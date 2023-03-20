@@ -2,6 +2,7 @@ package com.example.interviewtask.user.repository;
 
 import com.example.interviewtask.infrastructure.database.user.JpaUserRepository;
 import com.example.interviewtask.infrastructure.database.user.UserDataMapper;
+import com.example.interviewtask.infrastructures.BusinessUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class UserRepositoryImplTest {
+public class UserRepositoryImplTest extends BusinessUnitTest {
 
     @Autowired
     private JpaUserRepository jpaRepository;
@@ -22,6 +23,7 @@ public class UserRepositoryImplTest {
     @Test
     public void save_saves_a_user_properly() {
         var user = UserDataMapper.builder()
+                .id(randomString())
                 .firstname("dummy-first-name")
                 .lastname("dummy-last-name")
                 .password("password")

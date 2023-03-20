@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class PostRepositoryImpl implements PostRepository {
 
@@ -24,7 +26,7 @@ public class PostRepositoryImpl implements PostRepository {
     @Override
     public int create(Post post) {
         var postMapper = new PostDataMapper();
-        postMapper.setAuthorId(post.getAuthorId());
+        postMapper.setAuthorId(UUID.fromString(post.getAuthorId()).toString());
         postMapper.setDescription(post.getDescription());
         postMapper.setPremium(post.isPremium());
         postMapper.setContent(post.getContent());

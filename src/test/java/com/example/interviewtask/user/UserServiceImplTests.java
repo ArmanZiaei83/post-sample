@@ -35,11 +35,11 @@ public class UserServiceImplTests extends BusinessUnitTest {
                 .password("pass")
                 .isPremium(false)
                 .build();
-        var userId = randomInt();
+        var userId = randomString();
         when(createUserUseCase.execute(any(CreateUserDto.class))).thenReturn(
                 userId);
 
-        int actualResult = sut.create(dto);
+        String actualResult = sut.create(dto);
 
         Assert.assertEquals(actualResult, userId);
         Mockito.verify(createUserUseCase)

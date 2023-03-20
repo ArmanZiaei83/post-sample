@@ -29,7 +29,7 @@ public class PostDataMapper {
     private String content;
 
     @Column(name = "authorId")
-    private int authorId;
+    private String authorId;
 
     @JoinColumn(referencedColumnName = "id", insertable = false, name = "authorId", updatable = false)
     @ManyToOne(fetch = FetchType.LAZY)

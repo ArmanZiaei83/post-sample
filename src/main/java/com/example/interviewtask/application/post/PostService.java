@@ -9,10 +9,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface PostService {
-    int create(int authorId, CreatePostDto dto)
+    int create(String authorId, CreatePostDto dto)
             throws AuthorNotFoundException;
 
-    void update(int postId, UpdatePostDto dto);
+    void update(String authorId, int postId, UpdatePostDto dto);
 
     GetPostByIdDto getById(int postId);
 

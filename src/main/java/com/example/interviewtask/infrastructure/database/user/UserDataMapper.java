@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -24,8 +25,7 @@ import java.util.List;
 public class UserDataMapper implements UserDetails {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    private String id;
     @Column(nullable = false)
     @Length(min = 1, max = 20)
     private String firstname;
@@ -52,7 +52,7 @@ public class UserDataMapper implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return id.toString();
     }
 
     @Override

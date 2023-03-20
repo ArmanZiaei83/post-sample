@@ -6,9 +6,9 @@ import com.example.interviewtask.infrastructure.database.user.UserDataMapper;
 import java.util.Optional;
 
 public interface UserRepository {
-    Integer save(User user);
+    String save(User user);
 
-    boolean exists(int id);
+    boolean exists(String id);
 
-    Optional<UserDataMapper> findByEmail(String username);
+    Optional<UserDataMapper> findById(String id);
 }

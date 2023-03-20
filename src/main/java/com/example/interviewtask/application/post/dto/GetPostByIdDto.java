@@ -13,7 +13,7 @@ public class GetPostByIdDto {
     private LocalDateTime publishedDate;
     private String authorFirstName;
     private String authorLastName;
-    private int authorId;
+    private String authorId;
     private boolean isPremium;
 
     public String getTitle() {
@@ -64,11 +64,11 @@ public class GetPostByIdDto {
         this.authorLastName = authorLastName;
     }
 
-    public int getAuthorId() {
+    public String getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(int authorId) {
+    public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
 

@@ -4,10 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public interface JpaUserRepository
-        extends JpaRepository<UserDataMapper, Integer> {
+        extends JpaRepository<UserDataMapper, String> {
 
 
     Optional<UserDataMapper> findByEmail(String email);
@@ -15,5 +16,5 @@ public interface JpaUserRepository
     UserDataMapper save(UserDataMapper dataMapper);
 
     @Override
-    Optional<UserDataMapper> findById(Integer integer);
+    Optional<UserDataMapper> findById(String id);
 }

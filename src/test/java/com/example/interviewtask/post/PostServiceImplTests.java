@@ -19,7 +19,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -48,18 +48,20 @@ public class PostServiceImplTests extends BusinessUnitTest {
                 .isPremium(false)
                 .build();
         var postId = randomInt();
-        when(createPostUseCase.execute(anyInt(),
+        when(createPostUseCase.execute(anyString(),
                 any(CreatePostDto.class))).thenReturn(postId);
 
-        var actualResult = sut.create(randomInt(), dto);
+        var actualResult = sut.create(randomString(), dto);
 
         Assert.assertEquals(actualResult, postId);
-        verify(createPostUseCase).execute(anyInt(), any(CreatePostDto.class));
+        verify(createPostUseCase).execute(anyString(),
+                any(CreatePostDto.class));
     }
 
     @Test
     public void update_updates_a_post_properly() {
         var postId = randomInt();
+        var postAuthorId = randomString();
         var dto = UpdatePostDto.builder()
                 .title("new-title")
                 .content("new-content")
@@ -67,9 +69,9 @@ public class PostServiceImplTests extends BusinessUnitTest {
                 .isPremium(true)
                 .build();
 
-        sut.update(postId, dto);
+        sut.update(postAuthorId, postId, dto);
 
-        verify(updatePostUseCase).execute(postId, dto);
+        verify(updatePostUseCase).execute(postAuthorId, postId, dto);
     }
 
     @Test
@@ -79,7 +81,7 @@ public class PostServiceImplTests extends BusinessUnitTest {
                 .title("first-post")
                 .description("dummy-desc")
                 .content("dummy-content")
-                .authorId(randomInt())
+                .authorId(anyString())
                 .build();
 
         sut.getById(post.getId());
