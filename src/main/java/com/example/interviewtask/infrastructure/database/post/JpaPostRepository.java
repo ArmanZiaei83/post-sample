@@ -2,8 +2,8 @@ package com.example.interviewtask.infrastructure.database.post;
 
 import com.example.interviewtask.application.post.dto.GetAllPostsDto;
 import com.example.interviewtask.application.post.dto.GetPostByIdDto;
-import com.example.interviewtask.infrastructure.entity_mappers.GetAllPostDtoMapper;
-import com.example.interviewtask.infrastructure.entity_mappers.GetPostByIdDtoMapper;
+import com.example.interviewtask.infrastructure.entity_mapper.GetAllPostDtoMapper;
+import com.example.interviewtask.infrastructure.entity_mapper.GetPostByIdDtoMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;

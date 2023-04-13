@@ -1,7 +1,7 @@
 package com.example.interviewtask.presentation.controllers.user;
 
 import com.example.interviewtask.application.user.dto.CreateUserDto;
-import com.example.interviewtask.application.user.use_cases.CreateUserUseCase;
+import com.example.interviewtask.application.user.use_case.CreateUserUseCase;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

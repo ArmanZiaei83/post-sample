@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -52,7 +51,7 @@ public class UserDataMapper implements UserDetails {
 
     @Override
     public String getUsername() {
-        return id.toString();
+        return id;
     }
 
     @Override

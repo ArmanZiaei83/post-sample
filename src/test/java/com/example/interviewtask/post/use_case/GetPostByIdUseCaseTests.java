@@ -1,10 +1,10 @@
-package com.example.interviewtask.post.use_cases;
+package com.example.interviewtask.post.use_case;
 
 
 import com.example.interviewtask.application.post.dto.GetPostByIdDto;
-import com.example.interviewtask.application.post.repository.PostRepository;
-import com.example.interviewtask.application.post.use_cases.GetPostByIdUseCaseImpl;
+import com.example.interviewtask.application.post.use_case.GetPostByIdUseCase;
 import com.example.interviewtask.domain.post.Post;
+import com.example.interviewtask.domain.post.PostRepository;
 import com.example.interviewtask.domain.user.User;
 import com.example.interviewtask.infrastructures.BusinessUnitTest;
 import org.junit.Test;
@@ -19,10 +19,10 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class GetPostByIdUseCaseImplTests extends BusinessUnitTest {
+public class GetPostByIdUseCaseTests extends BusinessUnitTest {
 
     @Autowired
-    private GetPostByIdUseCaseImpl getPostByIdUseCase;
+    private GetPostByIdUseCase getPostByIdUseCase;
 
     @MockBean
     private PostRepository postRepository;

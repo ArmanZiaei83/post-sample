@@ -1,22 +1,24 @@
-package com.example.interviewtask.application.post.use_cases;
+package com.example.interviewtask.application.post.use_case;
 
 import com.example.interviewtask.application.post.dto.GetAllPostsDto;
-import com.example.interviewtask.application.post.repository.PostRepository;
+import com.example.interviewtask.domain.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @Component
-public class GetAllPostsUseCaseImpl implements GetAllPostsUseCase {
+public class GetAllPostsUseCase {
     private PostRepository postRepository;
 
     @Autowired
-    public GetAllPostsUseCaseImpl(PostRepository postRepository) {
+    public GetAllPostsUseCase(
+            @Qualifier("createPostRepository") PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
-    @Override
     public Page<GetAllPostsDto> execute(Pageable pageable) {
         return postRepository.getAll(pageable);
     }

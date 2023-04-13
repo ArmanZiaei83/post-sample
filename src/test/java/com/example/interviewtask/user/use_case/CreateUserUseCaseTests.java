@@ -1,8 +1,8 @@
-package com.example.interviewtask.user.use_cases;
+package com.example.interviewtask.user.use_case;
 
 import com.example.interviewtask.application.user.dto.CreateUserDto;
-import com.example.interviewtask.application.user.repository.UserRepository;
-import com.example.interviewtask.application.user.use_cases.CreateUserUseCaseImpl;
+import com.example.interviewtask.application.user.use_case.CreateUserUseCase;
+import com.example.interviewtask.domain.user.UserRepository;
 import com.example.interviewtask.infrastructures.BusinessUnitTest;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,10 +18,10 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 
 @SpringBootTest
-public class CreateUserUseCaseImplTests extends BusinessUnitTest {
+public class CreateUserUseCaseTests extends BusinessUnitTest {
 
     @Autowired
-    CreateUserUseCaseImpl createUserUseCase;
+    CreateUserUseCase createUserUseCase;
     @MockBean
     UserRepository userRepository;
 

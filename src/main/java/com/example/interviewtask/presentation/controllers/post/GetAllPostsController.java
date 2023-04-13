@@ -1,7 +1,7 @@
 package com.example.interviewtask.presentation.controllers.post;
 
 import com.example.interviewtask.application.post.dto.GetAllPostsDto;
-import com.example.interviewtask.application.post.use_cases.GetAllPostsUseCase;
+import com.example.interviewtask.application.post.use_case.GetAllPostsUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;

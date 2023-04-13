@@ -1,8 +1,7 @@
-package com.example.interviewtask.application.post.repository;
+package com.example.interviewtask.domain.post;
 
 import com.example.interviewtask.application.post.dto.GetAllPostsDto;
 import com.example.interviewtask.application.post.dto.GetPostByIdDto;
-import com.example.interviewtask.domain.post.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

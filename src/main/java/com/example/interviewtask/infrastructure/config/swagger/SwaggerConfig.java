@@ -11,7 +11,7 @@ import org.springframework.util.StringUtils;
 
 
 @Configuration
-public class OpenApiConfig {
+public class SwaggerConfig {
 
     @Bean
     public OpenAPI customOpenAPI() {

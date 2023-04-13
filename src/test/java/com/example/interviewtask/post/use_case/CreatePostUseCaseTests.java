@@ -1,12 +1,12 @@
-package com.example.interviewtask.post.use_cases;
+package com.example.interviewtask.post.use_case;
 
-import com.example.interviewtask.infrastructure.date_time.DateTimeService;
 import com.example.interviewtask.application.post.dto.CreatePostDto;
 import com.example.interviewtask.application.post.exception.AuthorNotFoundException;
-import com.example.interviewtask.application.post.repository.PostRepository;
-import com.example.interviewtask.application.post.use_cases.CreatePostUseCaseImpl;
-import com.example.interviewtask.application.user.repository.UserRepository;
+import com.example.interviewtask.application.post.use_case.CreatePostUseCase;
 import com.example.interviewtask.domain.post.Post;
+import com.example.interviewtask.domain.post.PostRepository;
+import com.example.interviewtask.domain.user.UserRepository;
+import com.example.interviewtask.infrastructure.date_time.DateTimeService;
 import com.example.interviewtask.infrastructures.BusinessUnitTest;
 import lombok.SneakyThrows;
 import org.junit.Assert;
@@ -28,10 +28,10 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CreatePostUseCaseImplTests extends BusinessUnitTest {
+public class CreatePostUseCaseTests extends BusinessUnitTest {
 
     @Autowired
-    private CreatePostUseCaseImpl createPostUseCase;
+    private CreatePostUseCase createPostUseCase;
 
     @MockBean
     private PostRepository postRepository;

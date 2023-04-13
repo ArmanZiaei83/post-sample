@@ -1,7 +1,7 @@
 package com.example.interviewtask.presentation.controllers.post;
 
 import com.example.interviewtask.application.post.dto.CreatePostDto;
-import com.example.interviewtask.application.post.use_cases.CreatePostUseCase;
+import com.example.interviewtask.application.post.use_case.CreatePostUseCase;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

@@ -1,7 +1,7 @@
 package com.example.interviewtask.presentation.controllers.post;
 
 import com.example.interviewtask.application.post.dto.GetPostByIdDto;
-import com.example.interviewtask.application.post.use_cases.GetPostByIdUseCase;
+import com.example.interviewtask.application.post.use_case.GetPostByIdUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

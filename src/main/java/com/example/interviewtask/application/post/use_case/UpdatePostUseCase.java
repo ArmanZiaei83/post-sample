@@ -1,22 +1,23 @@
-package com.example.interviewtask.application.post.use_cases;
+package com.example.interviewtask.application.post.use_case;
 
 import com.example.interviewtask.application.post.dto.UpdatePostDto;
 import com.example.interviewtask.application.post.exception.OnlyAuthorCanEditPostException;
-import com.example.interviewtask.application.post.repository.PostRepository;
 import com.example.interviewtask.domain.post.Post;
+import com.example.interviewtask.domain.post.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UpdatePostUseCaseImpl implements UpdatePostUseCase {
+public class UpdatePostUseCase {
     private final PostRepository postRepository;
 
     @Autowired
-    public UpdatePostUseCaseImpl(PostRepository postRepository) {
+    public UpdatePostUseCase(
+            @Qualifier("createPostRepository") PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
-    @Override
     public void execute(String authorId, int postId, UpdatePostDto dto) {
         var post = postRepository.findById(postId);
         throwExceptionWhenAuthorIdIsInvalid(authorId, post);
@@ -31,7 +32,7 @@ public class UpdatePostUseCaseImpl implements UpdatePostUseCase {
 
     private void throwExceptionWhenAuthorIdIsInvalid(String authorId,
                                                      Post post) {
-        if(post.getAuthorId() != authorId)
+        if (post.getAuthorId() != authorId)
             throw new OnlyAuthorCanEditPostException();
     }
 }

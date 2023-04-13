@@ -1,7 +1,7 @@
 package com.example.interviewtask.presentation.controllers.post;
 
 import com.example.interviewtask.application.post.dto.UpdatePostDto;
-import com.example.interviewtask.application.post.use_cases.UpdatePostUseCase;
+import com.example.interviewtask.application.post.use_case.UpdatePostUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.core.Authentication;

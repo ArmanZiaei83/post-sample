@@ -19,17 +19,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
-
-
+public class AuthConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final UserDetailsService userDetailsService;
 
     @Autowired
-    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
-                          @Lazy JwtAuthorizationFilter jwtAuthorizationFilter,
-                          UserDetailsService userDetailsService) {
+    public AuthConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
+                      @Lazy JwtAuthorizationFilter jwtAuthorizationFilter,
+                      UserDetailsService userDetailsService) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.jwtAuthorizationFilter = jwtAuthorizationFilter;
         this.userDetailsService = userDetailsService;
@@ -42,7 +40,7 @@ public class SecurityConfig {
         http.csrf()
                 .disable()
                 .authorizeRequests()
-                .requestMatchers("api/v1/authenticate", "/swagger-ui.html",
+                .requestMatchers("api/v1/login", "/swagger-ui.html",
                         "/swagger-ui/index.html", "/swagger-ui/**",
                         "/v3/api-docs/**", "api/v1/users")
                 .permitAll()
@@ -66,7 +64,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public PasswordEncoder configurePasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

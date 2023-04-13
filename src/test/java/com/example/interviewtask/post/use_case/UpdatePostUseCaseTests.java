@@ -1,11 +1,10 @@
-package com.example.interviewtask.post.use_cases;
+package com.example.interviewtask.post.use_case;
 
 import com.example.interviewtask.application.post.dto.UpdatePostDto;
-import com.example.interviewtask.application.post.exception.AuthorNotFoundException;
 import com.example.interviewtask.application.post.exception.OnlyAuthorCanEditPostException;
-import com.example.interviewtask.application.post.repository.PostRepository;
-import com.example.interviewtask.application.post.use_cases.UpdatePostUseCaseImpl;
+import com.example.interviewtask.application.post.use_case.UpdatePostUseCase;
 import com.example.interviewtask.domain.post.Post;
+import com.example.interviewtask.domain.post.PostRepository;
 import com.example.interviewtask.infrastructures.BusinessUnitTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,10 +22,10 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UpdatePostUseCaseImplTests extends BusinessUnitTest {
+public class UpdatePostUseCaseTests extends BusinessUnitTest {
 
     @Autowired
-    private UpdatePostUseCaseImpl updatePostUseCase;
+    private UpdatePostUseCase updatePostUseCase;
     @MockBean
     private PostRepository postRepository;
 

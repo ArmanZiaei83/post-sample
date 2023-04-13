@@ -1,34 +1,35 @@
-package com.example.interviewtask.application.post.use_cases;
+package com.example.interviewtask.application.post.use_case;
 
-import com.example.interviewtask.infrastructure.date_time.DateTimeService;
 import com.example.interviewtask.application.post.dto.CreatePostDto;
 import com.example.interviewtask.application.post.exception.AuthorNotFoundException;
-import com.example.interviewtask.application.post.repository.PostRepository;
-import com.example.interviewtask.application.user.repository.UserRepository;
 import com.example.interviewtask.domain.post.Post;
+import com.example.interviewtask.domain.post.PostRepository;
+import com.example.interviewtask.domain.user.UserRepository;
+import com.example.interviewtask.infrastructure.date_time.DateTimeService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @Component
-public class CreatePostUseCaseImpl implements CreatePostUseCase {
+public class CreatePostUseCase {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final DateTimeService dateTimeService;
 
     @Autowired
-    public CreatePostUseCaseImpl(PostRepository postRepository,
-                                 UserRepository userRepository,
-                                 DateTimeService dateTimeService) {
+    public CreatePostUseCase(
+            @Qualifier("createPostRepository") PostRepository postRepository,
+            @Qualifier("createUserRepository") UserRepository userRepository,
+            @Qualifier("createDateTimeService") DateTimeService dateTimeService) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.dateTimeService = dateTimeService;
     }
 
     @SneakyThrows
-    @Override
     public int execute(String authorId, CreatePostDto dto) {
-
         throwExceptionWhenAuthorIdIsInvalid(authorId);
 
         var post = new Post();

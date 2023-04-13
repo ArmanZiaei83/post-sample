@@ -4,7 +4,6 @@ import com.example.interviewtask.infrastructure.database.post.PostDataMapper;
 import lombok.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Builder
 @NoArgsConstructor

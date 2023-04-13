@@ -1,20 +1,16 @@
 package com.example.interviewtask.persistence.user;
 
-import com.example.interviewtask.application.user.repository.UserRepository;
 import com.example.interviewtask.domain.user.User;
+import com.example.interviewtask.domain.user.UserRepository;
 import com.example.interviewtask.infrastructure.database.user.JpaUserRepository;
 import com.example.interviewtask.infrastructure.database.user.UserDataMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.UUID;
 
-@Component
 public class UserRepositoryImpl implements UserRepository {
     private final JpaUserRepository jpaRepository;
 
-    @Autowired
     public UserRepositoryImpl(JpaUserRepository jpaRepository) {
         this.jpaRepository = jpaRepository;
     }
@@ -43,7 +39,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Optional<UserDataMapper> findById(String id) {
-        return jpaRepository.findById(id);
+    public Optional<UserDataMapper> findByUsername(String email) {
+        return jpaRepository.findByEmail(email);
     }
 }
